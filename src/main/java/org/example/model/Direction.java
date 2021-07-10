@@ -1,5 +1,5 @@
 package org.example.model;
 
 public enum Direction {
-    LEFT, RIGHT;
+    CLOCKWISE, ANTICLOCKWISE;
 }

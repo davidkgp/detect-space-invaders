@@ -1,5 +1,6 @@
 package org.example.model;
 
+import org.example.exceptions.IllegalRotationException;
 import org.example.exceptions.MalformedMatrixException;
 import org.junit.Test;
 
@@ -127,6 +128,70 @@ public class MatrixTest {
         Matrix matrix = new Matrix(Arrays.asList("123", "456", "789", "111"));
         Matrix matrixCompare = new Matrix(Arrays.asList("897", "999", "333", "000"));
         assertTrue(matrix.match(matrixCompare, 100));
+
+    }
+
+    @Test(expected = IllegalRotationException.class)
+    public void whenRotationIsNotInMultiplesOf90ThenException(){
+
+        Matrix matrix = new Matrix(Arrays.asList("123", "456", "789", "111"));
+        matrix.rotate(230,Direction.ANTICLOCKWISE);
+
+    }
+
+    @Test
+    public void whenRotationIsInMultiplesOf360ThenSameMatrix(){
+
+        Matrix matrix = new Matrix(Arrays.asList("123", "456", "789", "111"));
+        Matrix rotatedMatrix = matrix.rotate(720,Direction.ANTICLOCKWISE);
+
+        assertTrue(matrix.match(rotatedMatrix,0));
+
+    }
+
+    @Test
+    public void whenRotationIsZeroThenSameMatrix(){
+
+        Matrix matrix = new Matrix(Arrays.asList("123", "456", "789", "111"));
+        Matrix rotatedMatrix = matrix.rotate(0,Direction.ANTICLOCKWISE);
+
+        assertTrue(matrix.match(rotatedMatrix,0));
+
+    }
+
+    @Test
+    public void whenRotationIsAppliedFor90ThenGetRotatedMatrixofAntiClockwise(){
+
+        Matrix matrix = new Matrix(Arrays.asList("123", "456", "789", "111"));
+        Matrix rotatedMatrix = matrix.rotate(90,Direction.ANTICLOCKWISE);
+
+        Matrix expected = new Matrix(Arrays.asList("3691", "2581", "1471"));
+
+        assertTrue(expected.match(rotatedMatrix,0));
+
+    }
+
+    @Test
+    public void whenRotationIsAppliedFor180ThenGetRotatedMatrixofAntiClockwise(){
+
+        Matrix matrix = new Matrix(Arrays.asList("123", "456", "789", "111"));
+        Matrix rotatedMatrix = matrix.rotate(180,Direction.ANTICLOCKWISE);
+
+        Matrix expected = new Matrix(Arrays.asList("111", "987", "654", "321"));
+
+        assertTrue(expected.match(rotatedMatrix,0));
+
+    }
+
+    @Test
+    public void whenRotationIsAppliedFor270ThenGetRotatedMatrixofAntiClockwise(){
+
+        Matrix matrix = new Matrix(Arrays.asList("123", "456", "789", "111"));
+        Matrix rotatedMatrix = matrix.rotate(270,Direction.ANTICLOCKWISE);
+
+        Matrix expected = new Matrix(Arrays.asList("1741", "1852", "1963"));
+
+        assertTrue(expected.match(rotatedMatrix,0));
 
     }
 

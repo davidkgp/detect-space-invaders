@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.Collections;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 
 public class MatrixTest {
@@ -45,6 +47,45 @@ public class MatrixTest {
     @Test(expected = IllegalArgumentException.class)
     public void whenInputIsButContainsNullExpectExecption(){
         new Matrix(Arrays.asList("123","456",null,"111"));
+
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenInputisNullTheMatchThrowsExecption(){
+        Matrix matrix = new Matrix(Arrays.asList("123","456","789","111"));
+        matrix.match(null,0);
+
+    }
+
+    @Test
+    public void whenInputisEmptyMatrixThenMismatch(){
+        Matrix matrix = new Matrix(Arrays.asList("123","456","789","111"));
+        Matrix matrixCompare = new Matrix(Collections.emptyList());
+        assertFalse(matrix.match(matrixCompare,0));
+
+    }
+
+    @Test
+    public void whenInputisDiffDimensionMatrixThenMismatch(){
+        Matrix matrix = new Matrix(Arrays.asList("123","456","789","111"));
+        Matrix matrixCompare = new Matrix(Arrays.asList("123","456","789"));
+        assertFalse(matrix.match(matrixCompare,0));
+
+    }
+
+    @Test
+    public void whenInputisSameMatrixThenMatch(){
+        Matrix matrix = new Matrix(Arrays.asList("123","456","789","111"));
+        Matrix matrixCompare = new Matrix(Arrays.asList("123","456","789","111"));
+        assertTrue(matrix.match(matrixCompare,0));
+
+    }
+
+    @Test
+    public void whenInputisDiffMatrixThenMismatch(){
+        Matrix matrix = new Matrix(Arrays.asList("123","456","789","111"));
+        Matrix matrixCompare = new Matrix(Arrays.asList("123","999","789","111"));
+        assertFalse(matrix.match(matrixCompare,0));
 
     }
 

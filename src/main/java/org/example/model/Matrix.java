@@ -29,12 +29,16 @@ public class Matrix {
         dimension = new Dimension(matrix.length,matrix.length == 0 ? 0 : matrix[0].length);
     }
 
-    public boolean match(final Matrix compareTo, final int percentageFaultTolerance) {
-        return true;
+    public boolean match(@NonNull final Matrix compareTo, final int percentageFaultTolerance) {
+        return !compareTo.isEmpty() && compareTo.dimension.equals(this.dimension);
     }
 
     public Matrix rotate(final int multiplesOfNinety, final Direction direction) {
         return null;
+    }
+
+    public boolean isEmpty(){
+        return this.dimension.getRows() ==0 && this.dimension.getColumns() ==0;
     }
 
 

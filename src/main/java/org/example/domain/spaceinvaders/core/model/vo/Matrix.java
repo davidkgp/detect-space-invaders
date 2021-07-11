@@ -1,10 +1,7 @@
 package org.example.domain.spaceinvaders.core.model.vo;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
-import lombok.extern.slf4j.Slf4j;
-import org.example.Trigger;
 import org.example.domain.spaceinvaders.core.exceptions.IllegalRotationException;
 import org.example.domain.spaceinvaders.core.exceptions.MalformedMatrixException;
 import org.example.domain.spaceinvaders.core.model.Direction;
@@ -103,7 +100,7 @@ public class Matrix {
 
     private Matrix rotateOnce(Matrix initialMatrix, Direction direction) {
 
-        int startColumn = direction.equals(Direction.ANTICLOCKWISE) ? initialMatrix.dimension.getColumns() - 1 : 0;
+        int startColumn = direction.equals(Direction.ANTICLOCKWISE) ? initialMatrix.dimension.getColumnCount() - 1 : 0;
 
 
         List<String> rotatedData = new ArrayList<>();
@@ -113,7 +110,7 @@ public class Matrix {
                 rotatedData.add(Arrays.stream(initialMatrix.getMatrix()).map(row -> row[finalI]).collect(Collectors.joining()));
             }
         } else {
-            for (int i = startColumn; i < initialMatrix.dimension.getColumns(); i++) {
+            for (int i = startColumn; i < initialMatrix.dimension.getColumnCount(); i++) {
                 int finalI = i;
                 StringBuilder st = new StringBuilder(Arrays.stream(initialMatrix.getMatrix()).map(row -> row[finalI]).collect(Collectors.joining()));
                 rotatedData.add(st.reverse().toString());
@@ -126,14 +123,14 @@ public class Matrix {
     }
 
     public boolean isEmpty() {
-        return this.dimension.getRows() == 0 && this.dimension.getColumns() == 0;
+        return this.dimension.getRowCount() == 0 && this.dimension.getColumnCount() == 0;
     }
 
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
         for (String[] ints : this.matrix) {
-            for (int j = 0; j < this.dimension.getColumns(); j++) {
+            for (int j = 0; j < this.dimension.getColumnCount(); j++) {
                 str.append(ints[j]);
             }
             str.append("\n");

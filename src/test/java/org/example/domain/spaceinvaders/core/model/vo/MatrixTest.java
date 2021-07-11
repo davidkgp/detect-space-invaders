@@ -29,8 +29,8 @@ public class MatrixTest {
     @Test
     public void whenInputIsNonEmptyProperMatrix() {
         Matrix matrix = new Matrix(Arrays.asList("123", "456", "789", "111"));
-        assertEquals(matrix.getDimension().getRows(), 4);
-        assertEquals(matrix.getDimension().getColumns(), 3);
+        assertEquals(matrix.getDimension().getRowCount(), 4);
+        assertEquals(matrix.getDimension().getColumnCount(), 3);
 
 
     }

@@ -26,7 +26,7 @@ public class RadarDataStoreTest {
         RadarDataStore radarDataStore = new RadarDataAdaptar(radarDataRepository);
         when(radarDataRepository.get()).thenReturn(new Radar(new Matrix(Collections.emptyList())));
 
-        assertTrue(radarDataStore.get().getMatrixRepresentation().isEmpty());
+        assertTrue(radarDataStore.get().isEmpty());
 
     }
 
@@ -36,7 +36,7 @@ public class RadarDataStoreTest {
         RadarDataStore radarDataStore = new RadarDataAdaptar(radarDataRepository);
         when(radarDataRepository.get()).thenThrow(new IllegalStateException("No radar Found"));
 
-        assertTrue(radarDataStore.get().getMatrixRepresentation().isEmpty());
+        assertTrue(radarDataStore.get().isEmpty());
 
     }
 
@@ -45,8 +45,8 @@ public class RadarDataStoreTest {
         RadarDataStore radarDataStore = new RadarDataAdaptar(radarDataRepository);
         when(radarDataRepository.get()).thenReturn(new Radar(new Matrix(Arrays.asList("123", "456", "789"))));
 
-        assertEquals(3, radarDataStore.get().getMatrixRepresentation().getDimension().getRows());
-        assertEquals(3, radarDataStore.get().getMatrixRepresentation().getDimension().getColumns());
+        assertEquals(3, radarDataStore.get().getRowCount());
+        assertEquals(3, radarDataStore.get().getColumnCount());
 
 
     }

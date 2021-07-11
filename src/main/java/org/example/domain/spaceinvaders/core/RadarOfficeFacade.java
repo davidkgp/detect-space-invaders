@@ -11,6 +11,7 @@ import org.example.domain.spaceinvaders.core.port.incoming.RadarOffice;
 import org.example.domain.spaceinvaders.core.port.outgoing.InvaderDataStore;
 import org.example.domain.spaceinvaders.core.port.outgoing.RadarDataStore;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,7 +28,7 @@ public class RadarOfficeFacade implements RadarOffice {
 
         final Radar radarData = radarDataStore.get();
 
-        return new RadarResponse(invaderList.stream()
+        return radarData.isEmpty()? new RadarResponse(Collections.emptyMap()):new RadarResponse(invaderList.stream()
                 .flatMap(invader -> invader.possibleVariations().stream())
                 .map(radarData::containsInvaderPattern)
                 .collect(Collectors.toMap(InvaderStat::getInvaderName, InvaderStat::getCount)));

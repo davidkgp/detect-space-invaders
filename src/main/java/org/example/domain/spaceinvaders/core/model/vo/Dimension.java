@@ -7,14 +7,14 @@ import lombok.Getter;
 @Getter
 public class Dimension {
 
-    private final int rows;
-    private final int columns;
+    private final int rowCount;
+    private final int columnCount;
 
 
     @Override
     public boolean equals(Object input) {
         return input instanceof Dimension
-                && ((Dimension) input).columns == this.columns
-                && ((Dimension) input).rows == this.rows;
+                && ((Dimension) input).columnCount == this.columnCount
+                && ((Dimension) input).rowCount == this.rowCount;
     }
 }

@@ -2,6 +2,7 @@ package org.example.domain.spaceinvaders.core.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NonNull;
 import org.example.domain.spaceinvaders.core.model.vo.Matrix;
 
 import java.util.Arrays;
@@ -9,8 +10,8 @@ import java.util.Collections;
 import java.util.List;
 
 @AllArgsConstructor
-@Getter
 public class Invader {
+
 
     private final String invaderName;
 
@@ -28,6 +29,22 @@ public class Invader {
                         new Invader(this.invaderName+"-rotated270clock",matrixRepresentation.rotate(270,Direction.CLOCKWISE))
                         )
         :Collections.emptyList();
+    }
+
+    public boolean compare(@NonNull final Matrix matrixToCompare, final int percentageFaultTolerance){
+        return this.matrixRepresentation.match(matrixToCompare,percentageFaultTolerance);
+    }
+
+    public String getInvaderName() {
+        return invaderName;
+    }
+
+    public int getRowCount(){
+        return this.matrixRepresentation.getDimension().getRowCount();
+    }
+
+    public int getColumnCount(){
+        return this.matrixRepresentation.getDimension().getColumnCount();
     }
 
 }

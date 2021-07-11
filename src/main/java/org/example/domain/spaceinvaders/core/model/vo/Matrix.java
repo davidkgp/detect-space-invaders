@@ -142,18 +142,3 @@ public class Matrix {
     }
 }
 
-@AllArgsConstructor
-@Getter
-class Dimension {
-
-    private final int rows;
-    private final int columns;
-
-
-    @Override
-    public boolean equals(Object input) {
-        return input instanceof Dimension
-                && ((Dimension) input).columns == this.columns
-                && ((Dimension) input).rows == this.rows;
-    }
-}

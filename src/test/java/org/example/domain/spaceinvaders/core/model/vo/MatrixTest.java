@@ -1,7 +1,8 @@
-package org.example.model;
+package org.example.domain.spaceinvaders.core.model.vo;
 
-import org.example.exceptions.IllegalRotationException;
-import org.example.exceptions.MalformedMatrixException;
+import org.example.domain.spaceinvaders.core.exceptions.IllegalRotationException;
+import org.example.domain.spaceinvaders.core.exceptions.MalformedMatrixException;
+import org.example.domain.spaceinvaders.core.model.Direction;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -212,7 +213,7 @@ public class MatrixTest {
     public void whenRotationIsAppliedFor180ThenGetRotatedMatrixofClockwise(){
 
         Matrix matrix = new Matrix(Arrays.asList("123", "456", "789", "111"));
-        Matrix rotatedMatrix = matrix.rotate(180,Direction.CLOCKWISE);
+        Matrix rotatedMatrix = matrix.rotate(180, Direction.CLOCKWISE);
 
         Matrix expected = new Matrix(Arrays.asList("111", "987", "654", "321"));
 

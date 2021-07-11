@@ -1,4 +1,4 @@
-package org.example.exceptions;
+package org.example.domain.spaceinvaders.core.exceptions;
 
 public class MalformedMatrixException extends RuntimeException {
     public MalformedMatrixException(String message) {

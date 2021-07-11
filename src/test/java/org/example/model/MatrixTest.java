@@ -196,4 +196,41 @@ public class MatrixTest {
     }
 
 
+    @Test
+    public void whenRotationIsAppliedFor90ThenGetRotatedMatrixofClockwise(){
+
+        Matrix matrix = new Matrix(Arrays.asList("123", "456", "789", "111"));
+        Matrix rotatedMatrix = matrix.rotate(90,Direction.CLOCKWISE);
+
+        Matrix expected = new Matrix(Arrays.asList("1741", "1852", "1963"));
+
+        assertTrue(expected.match(rotatedMatrix,0));
+
+    }
+
+    @Test
+    public void whenRotationIsAppliedFor180ThenGetRotatedMatrixofClockwise(){
+
+        Matrix matrix = new Matrix(Arrays.asList("123", "456", "789", "111"));
+        Matrix rotatedMatrix = matrix.rotate(180,Direction.CLOCKWISE);
+
+        Matrix expected = new Matrix(Arrays.asList("111", "987", "654", "321"));
+
+        assertTrue(expected.match(rotatedMatrix,0));
+
+    }
+
+    @Test
+    public void whenRotationIsAppliedFor270ThenGetRotatedMatrixofClockwise(){
+
+        Matrix matrix = new Matrix(Arrays.asList("123", "456", "789", "111"));
+        Matrix rotatedMatrix = matrix.rotate(270,Direction.CLOCKWISE);
+
+        Matrix expected = new Matrix(Arrays.asList("3691", "2581", "1471"));
+
+        assertTrue(expected.match(rotatedMatrix,0));
+
+    }
+
+
 }

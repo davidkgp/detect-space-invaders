@@ -96,14 +96,22 @@ public class Matrix {
 
     private Matrix rotateOnce(Matrix initialMatrix, Direction direction) {
 
-        int startRow = direction.equals(Direction.ANTICLOCKWISE)?0:initialMatrix.getMatrix().length-1;
         int startColumn = direction.equals(Direction.ANTICLOCKWISE) ? initialMatrix.dimension.getColumns()-1:0;
 
 
         List<String> rotatedData = new ArrayList<>();
-        for(int i = startColumn ; i >=0 ; i--){
-            int finalI = i;
-            rotatedData.add(Arrays.stream(initialMatrix.getMatrix()).map(row->row[finalI]).collect(Collectors.joining()));
+        if(direction.equals(Direction.ANTICLOCKWISE) ) {
+            for (int i = startColumn; i >= 0; i--) {
+                int finalI = i;
+                rotatedData.add(Arrays.stream(initialMatrix.getMatrix()).map(row -> row[finalI]).collect(Collectors.joining()));
+            }
+        }else{
+            for (int i = startColumn; i < initialMatrix.dimension.getColumns(); i++) {
+                int finalI = i;
+                StringBuilder st = new StringBuilder(Arrays.stream(initialMatrix.getMatrix()).map(row -> row[finalI]).collect(Collectors.joining()));
+                rotatedData.add(st.reverse().toString());
+            }
+
         }
 
 

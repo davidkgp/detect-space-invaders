@@ -7,9 +7,13 @@ import org.example.domain.spaceinvaders.core.model.response.RadarResponse;
 import org.example.domain.spaceinvaders.core.model.vo.Matrix;
 import org.example.domain.spaceinvaders.core.port.incoming.RadarOffice;
 import org.example.domain.spaceinvaders.core.port.outgoing.InvaderDataStore;
+import org.example.domain.spaceinvaders.core.port.outgoing.RadarDataStore;
 import org.example.domain.spaceinvaders.infrastructure.InvaderAdaptar;
+import org.example.domain.spaceinvaders.infrastructure.RadarDataAdaptar;
 import org.example.domain.spaceinvaders.infrastructure.repository.LocalInvaderFileRepository;
+import org.example.domain.spaceinvaders.infrastructure.repository.LocalRadarDataRepository;
 import org.example.domain.spaceinvaders.infrastructure.repository.interfaces.InvaderRepository;
+import org.example.domain.spaceinvaders.infrastructure.repository.interfaces.RadarDataRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,7 +30,12 @@ public class Trigger {
         log.info("Start searching ....");
         InvaderRepository invaderRepository = new LocalInvaderFileRepository();
         InvaderDataStore invaderDataStore = new InvaderAdaptar(invaderRepository);
-        RadarOffice radarOffice = new RadarOfficeFacade(invaderDataStore);
+
+        RadarDataRepository radarDataRepository = new LocalRadarDataRepository();
+        RadarDataStore radarDataStore = new RadarDataAdaptar(radarDataRepository);
+
+
+        RadarOffice radarOffice = new RadarOfficeFacade(invaderDataStore,radarDataStore);
         SpaceInvaders spaceInvaders = new SpaceInvaders(radarOffice);
         RadarResponse radarResponse = spaceInvaders.detect(10);
         log.info("Searching result {}", radarResponse.toString());

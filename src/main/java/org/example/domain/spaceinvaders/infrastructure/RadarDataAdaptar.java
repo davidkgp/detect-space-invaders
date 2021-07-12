@@ -22,7 +22,7 @@ public class RadarDataAdaptar implements RadarDataStore {
             return radarDataRepository.get();
         }catch(Exception exception){
             log.error("Error occured while loading radara data from datastore",exception);
-            return new Radar(new Matrix(Collections.emptyList()));
+            return new Radar(Matrix.EMPTY_MATRIX);
         }
     }
 }

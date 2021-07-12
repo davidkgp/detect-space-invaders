@@ -24,9 +24,16 @@ public class Radar {
 
     private List<Matrix> getPossibleHorrizontalSlidingWindows(int rowCount, int columnCount) {
 
-        if(this.matrixRepresentation.getDimension().getRowCount() >= rowCount
-                && this.matrixRepresentation.getDimension().getColumnCount() >= columnCount){
+        if(this.matrixRepresentation.getDimension().getRowCount() > rowCount
+                && this.matrixRepresentation.getDimension().getColumnCount() > columnCount){
 
+            return this.matrixRepresentation.sliding(rowCount, columnCount);
+
+
+        }else if(this.matrixRepresentation.getDimension().getRowCount() == rowCount
+                && this.matrixRepresentation.getDimension().getColumnCount() == columnCount){
+
+            return Collections.singletonList(this.matrixRepresentation);
 
         }
 

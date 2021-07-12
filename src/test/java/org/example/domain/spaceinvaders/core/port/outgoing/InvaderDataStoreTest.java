@@ -45,8 +45,8 @@ public class InvaderDataStoreTest {
     public void whenInvadersFoundProvideNonEmptyList(){
 
         InvaderDataStore invaderDataStore = new InvaderAdaptar(repo);
-        when(repo.get()).thenReturn(Arrays.asList(new Invader("1",new Matrix(Collections.emptyList())),
-                new Invader("2",new Matrix(Collections.emptyList()))));
+        when(repo.get()).thenReturn(Arrays.asList(new Invader("1",Matrix.EMPTY_MATRIX),
+                new Invader("2",Matrix.EMPTY_MATRIX)));
 
         assertEquals(invaderDataStore.get().size(),2);
 

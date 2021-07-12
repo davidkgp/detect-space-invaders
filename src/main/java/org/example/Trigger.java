@@ -37,7 +37,7 @@ public class Trigger {
 
         RadarOffice radarOffice = new RadarOfficeFacade(invaderDataStore,radarDataStore);
         SpaceInvaders spaceInvaders = new SpaceInvaders(radarOffice);
-        RadarResponse radarResponse = spaceInvaders.detect(10);
+        RadarResponse radarResponse = spaceInvaders.detect(50);
         log.info("Searching result {}", radarResponse.toString());
     }
 }

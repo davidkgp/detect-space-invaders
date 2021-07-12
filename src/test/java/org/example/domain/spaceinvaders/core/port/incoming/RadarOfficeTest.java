@@ -51,7 +51,7 @@ public class RadarOfficeTest {
                 .thenReturn(Collections
                         .singletonList(new Invader("Some",
                                 new Matrix(Arrays.asList("123", "456")))));
-        when(radarDataStore.get()).thenReturn(new Radar(new Matrix(Collections.emptyList())));
+        when(radarDataStore.get()).thenReturn(new Radar(Matrix.EMPTY_MATRIX));
 
 
         RadarResponse radarResponse = radarOffice.check(new RadarSearchCommand(10));

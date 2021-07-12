@@ -24,7 +24,7 @@ public class RadarDataStoreTest {
     @Test
     public void whenRadarsNotFoundProvideEmptyRadar() {
         RadarDataStore radarDataStore = new RadarDataAdaptar(radarDataRepository);
-        when(radarDataRepository.get()).thenReturn(new Radar(new Matrix(Collections.emptyList())));
+        when(radarDataRepository.get()).thenReturn(new Radar(Matrix.EMPTY_MATRIX));
 
         assertTrue(radarDataStore.get().isEmpty());
 

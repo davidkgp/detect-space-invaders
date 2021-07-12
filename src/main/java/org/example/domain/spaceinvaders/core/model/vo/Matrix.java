@@ -12,13 +12,18 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 @Getter
 public class Matrix {
+
+    public static Matrix EMPTY_MATRIX = new Matrix(Collections.emptyList());
 
     private static final Logger log
             = LoggerFactory.getLogger(Matrix.class);
@@ -63,16 +68,68 @@ public class Matrix {
         }
 
 
-        log.info(String.format("Percentage param %d, %d" ,count,firstList.size()));
+        log.info(String.format("Percentage param %d, %d", count, firstList.size()));
 
         double value = (double) count / firstList.size();
         BigDecimal bd = new BigDecimal(value).setScale(2, RoundingMode.HALF_UP);
 
-        int mismatchPercentage= bd.multiply(BigDecimal.valueOf(100)).intValue();
-        log.info(String.format("Percentage mismatch %d" ,mismatchPercentage));
+        int mismatchPercentage = bd.multiply(BigDecimal.valueOf(100)).intValue();
+        log.info(String.format("Percentage mismatch %d", mismatchPercentage));
 
         return mismatchPercentage;
 
+    }
+
+    public List<Matrix> sliding(final int windowRowCount, final int windowColumnCount) {
+
+        if ((this.getDimension().getRowCount() < windowRowCount && this.getDimension().getColumnCount() < windowColumnCount)
+                || (windowRowCount == 0 && windowColumnCount == 0)) {
+            return Collections.singletonList(EMPTY_MATRIX);
+        } else if (this.getDimension().getRowCount() == windowRowCount && this.getDimension().getColumnCount() == windowColumnCount) {
+            return Collections.singletonList(this);
+        } else {
+
+            List<List<String>> matrixListReprsentation = Arrays
+                    .stream(this.matrix)
+                    .map(Arrays::asList)
+                    .collect(Collectors.toList());
+
+            return applySliding(matrixListReprsentation, windowRowCount)
+                    .flatMap(slideList -> getMultipleMatrix(slideList, windowColumnCount))
+                    .collect(Collectors.toList());
+
+        }
+
+    }
+
+    private Stream<Matrix> getMultipleMatrix(List<List<String>> intermediateRowSlides, int windowRow) {
+
+        List<List<String>> row = intermediateRowSlides.stream().flatMap(each -> applySliding(each, windowRow)).collect(Collectors.toList());
+
+        int mergeLength = row.size() / intermediateRowSlides.size();
+
+        List<Matrix> mat = new ArrayList<>();
+
+        for (int i = 0; i < mergeLength; i++) {
+
+            List<List<String>> temp = new ArrayList<>();
+            for (int j = 0; j < intermediateRowSlides.size(); j++) {
+                temp.add(row.get(i + (mergeLength * j)));
+            }
+
+            mat.add(new Matrix(temp.stream().map(value -> String.join("", value)).collect(Collectors.toList())));
+        }
+        return mat.stream();
+
+    }
+
+    private <T> Stream<List<T>> applySliding(List<T> list, int size) {
+        if (size > list.size()) {
+            return Stream.empty();
+        } else {
+            return IntStream.range(0, list.size() - size + 1)
+                    .mapToObj(start -> list.subList(start, start + size));
+        }
     }
 
     public Matrix rotate(final int rotationAngle, final Direction direction) {

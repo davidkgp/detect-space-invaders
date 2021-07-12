@@ -63,8 +63,7 @@ public class MatrixTest {
     @Test
     public void whenInputisEmptyMatrixThenMismatch() {
         Matrix matrix = new Matrix(Arrays.asList("123", "456", "789", "111"));
-        Matrix matrixCompare = new Matrix(Collections.emptyList());
-        assertFalse(matrix.match(matrixCompare, 0));
+        assertFalse(matrix.match(Matrix.EMPTY_MATRIX, 0));
 
     }
 

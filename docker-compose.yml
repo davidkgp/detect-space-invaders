@@ -1,0 +1,12 @@
+version: "3.3"
+
+services:
+  invader-detector:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./input:/project/input
+    environment:
+      - FAULT_TOLERANCE_PERCENTAGE=20
+      - INPUT_ROOT=/project/input/

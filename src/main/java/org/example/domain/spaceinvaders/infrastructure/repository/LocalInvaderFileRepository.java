@@ -39,7 +39,7 @@ public class LocalInvaderFileRepository implements InvaderRepository {
                 .map(convert)
                 .map(optionalInvaderData ->
                         optionalInvaderData
-                                .orElseThrow(()-> new InvaderPatternNotinDataStoreException("No data founc")))
+                                .orElseThrow(() -> new InvaderPatternNotinDataStoreException("No data founc")))
                 .collect(Collectors.toList());
     }
 

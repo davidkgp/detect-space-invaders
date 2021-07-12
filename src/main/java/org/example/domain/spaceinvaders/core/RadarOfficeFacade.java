@@ -28,10 +28,10 @@ public class RadarOfficeFacade implements RadarOffice {
 
         final Radar radarData = radarDataStore.get();
 
-        return radarData.isEmpty()? new RadarResponse(Collections.emptyMap()):new RadarResponse(invaderList.stream()
+        return radarData.isEmpty() ? new RadarResponse(Collections.emptyMap()) : new RadarResponse(invaderList.stream()
                 .flatMap(invader -> invader.possibleVariations().stream())
-                .map(invader -> radarData.containsInvaderPattern(invader,radarSearchCommand.getPercentageFaultTolerance()))
-                .filter(invaderStat -> invaderStat.getCount()>0)
+                .map(invader -> radarData.containsInvaderPattern(invader, radarSearchCommand.getPercentageFaultTolerance()))
+                .filter(invaderStat -> invaderStat.getCount() > 0)
                 .collect(Collectors.toMap(InvaderStat::getInvaderName, InvaderStat::getCount)));
     }
 }

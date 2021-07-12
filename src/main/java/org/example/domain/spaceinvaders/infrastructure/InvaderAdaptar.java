@@ -17,10 +17,10 @@ public class InvaderAdaptar implements InvaderDataStore {
 
     @Override
     public List<Invader> get() {
-        try{
+        try {
             return invaderRepository.get();
-        }catch(Exception exception){
-            log.error("Error occured while lodading pattern from datastore",exception);
+        } catch (Exception exception) {
+            log.error("Error occured while lodading pattern from datastore", exception);
             return Collections.emptyList();
         }
 

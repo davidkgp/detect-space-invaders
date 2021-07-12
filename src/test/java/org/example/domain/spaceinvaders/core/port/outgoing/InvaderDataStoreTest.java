@@ -12,7 +12,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.util.Arrays;
 import java.util.Collections;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -22,33 +22,33 @@ public class InvaderDataStoreTest {
     InvaderRepository repo = mock(InvaderRepository.class);
 
     @Test
-    public void whenInvadersNotFoundProvideEmptyList(){
+    public void whenInvadersNotFoundProvideEmptyList() {
 
         InvaderDataStore invaderDataStore = new InvaderAdaptar(repo);
         when(repo.get()).thenReturn(Collections.emptyList());
 
-        assertEquals(invaderDataStore.get().size(),0);
+        assertEquals(invaderDataStore.get().size(), 0);
 
     }
 
     @Test
-    public void whenInvadersRetrivalThrowsExecptionProvideEmptyList(){
+    public void whenInvadersRetrivalThrowsExecptionProvideEmptyList() {
 
         InvaderDataStore invaderDataStore = new InvaderAdaptar(repo);
         when(repo.get()).thenThrow(new InvaderPatternNotinDataStoreException("No Invader pattern Found"));
 
-        assertEquals(invaderDataStore.get().size(),0);
+        assertEquals(invaderDataStore.get().size(), 0);
 
     }
 
     @Test
-    public void whenInvadersFoundProvideNonEmptyList(){
+    public void whenInvadersFoundProvideNonEmptyList() {
 
         InvaderDataStore invaderDataStore = new InvaderAdaptar(repo);
-        when(repo.get()).thenReturn(Arrays.asList(new Invader("1",Matrix.EMPTY_MATRIX),
-                new Invader("2",Matrix.EMPTY_MATRIX)));
+        when(repo.get()).thenReturn(Arrays.asList(new Invader("1", Matrix.EMPTY_MATRIX),
+                new Invader("2", Matrix.EMPTY_MATRIX)));
 
-        assertEquals(invaderDataStore.get().size(),2);
+        assertEquals(invaderDataStore.get().size(), 2);
 
     }
 

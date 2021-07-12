@@ -13,15 +13,15 @@ public class FileLoader {
 
     private final String rootFolder = "src/main/resources/";
 
-    public List<File> getFilesInDirectory(final String absolutePath){
-        final File path = new File(rootFolder+absolutePath);
+    public List<File> getFilesInDirectory(final String absolutePath) {
+        final File path = new File(rootFolder + absolutePath);
 
         return Arrays.stream(Objects.requireNonNull(path.listFiles()))
-                .peek(file-> log.info("File found {}",file.getPath()))
+                .peek(file -> log.info("File found {}", file.getPath()))
                 .filter(File::isFile)
-                .peek(file-> log.info("File found after filter {}",file.getPath()))
+                .peek(file -> log.info("File found after filter {}", file.getPath()))
                 .filter(File::canRead)
-                .peek(file-> log.info("File which can be read {}",file.getPath())).collect(Collectors.toList());
+                .peek(file -> log.info("File which can be read {}", file.getPath())).collect(Collectors.toList());
 
     }
 

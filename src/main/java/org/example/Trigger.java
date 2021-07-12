@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.example.domain.spaceinvaders.application.SpaceInvaders;
 import org.example.domain.spaceinvaders.core.RadarOfficeFacade;
 import org.example.domain.spaceinvaders.core.model.response.RadarResponse;
-import org.example.domain.spaceinvaders.core.model.vo.Matrix;
 import org.example.domain.spaceinvaders.core.port.incoming.RadarOffice;
 import org.example.domain.spaceinvaders.core.port.outgoing.InvaderDataStore;
 import org.example.domain.spaceinvaders.core.port.outgoing.RadarDataStore;
@@ -14,13 +13,6 @@ import org.example.domain.spaceinvaders.infrastructure.repository.LocalInvaderFi
 import org.example.domain.spaceinvaders.infrastructure.repository.LocalRadarDataRepository;
 import org.example.domain.spaceinvaders.infrastructure.repository.interfaces.InvaderRepository;
 import org.example.domain.spaceinvaders.infrastructure.repository.interfaces.RadarDataRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 
 @Slf4j
 public class Trigger {
@@ -35,7 +27,7 @@ public class Trigger {
         RadarDataStore radarDataStore = new RadarDataAdaptar(radarDataRepository);
 
 
-        RadarOffice radarOffice = new RadarOfficeFacade(invaderDataStore,radarDataStore);
+        RadarOffice radarOffice = new RadarOfficeFacade(invaderDataStore, radarDataStore);
         SpaceInvaders spaceInvaders = new SpaceInvaders(radarOffice);
         RadarResponse radarResponse = spaceInvaders.detect(50);
         log.info("Searching result {}", radarResponse.toString());

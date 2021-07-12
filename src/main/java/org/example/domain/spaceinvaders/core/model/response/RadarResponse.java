@@ -10,18 +10,18 @@ import java.util.stream.Collectors;
 @Getter
 public class RadarResponse {
 
-    private Map<String,Integer> invaderCount;
+    private Map<String, Integer> invaderCount;
 
     @Override
     public String toString() {
-        if (invaderCount.isEmpty()){
+        if (invaderCount.isEmpty()) {
             return "No invaders signature found in radar";
-        }else{
+        } else {
             return invaderCount
                     .entrySet()
                     .stream()
-                    .map( entry -> "Invader "+entry.getKey() + "occured "+ entry.getValue()+ " times")
-                    .collect(Collectors.joining(","));
+                    .map(entry -> "\nInvader " + entry.getKey() + " occured " + entry.getValue() + " times \n")
+                    .collect(Collectors.joining(""));
         }
 
     }

@@ -12,7 +12,7 @@ public class SpaceInvaders {
 
     private final RadarOffice radarOffice;
 
-    public RadarResponse detect(final int percentageFaultTolerance){
+    public RadarResponse detect(final int percentageFaultTolerance) {
         return radarOffice.check(new RadarSearchCommand(percentageFaultTolerance));
     }
 

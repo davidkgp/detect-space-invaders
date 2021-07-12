@@ -1,11 +1,9 @@
 package org.example.domain.spaceinvaders.infrastructure.repository;
 
 import lombok.extern.slf4j.Slf4j;
-import org.example.domain.spaceinvaders.core.model.Invader;
 import org.example.domain.spaceinvaders.core.model.Radar;
 import org.example.domain.spaceinvaders.core.model.vo.Matrix;
 import org.example.domain.spaceinvaders.infrastructure.repository.connectors.FileLoader;
-import org.example.domain.spaceinvaders.infrastructure.repository.exceptions.InvaderPatternNotinDataStoreException;
 import org.example.domain.spaceinvaders.infrastructure.repository.interfaces.RadarDataRepository;
 
 import java.io.File;
@@ -14,7 +12,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 

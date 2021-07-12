@@ -23,11 +23,9 @@ import java.util.stream.Stream;
 @Getter
 public class Matrix {
 
-    public static Matrix EMPTY_MATRIX = new Matrix(Collections.emptyList());
-
     private static final Logger log
             = LoggerFactory.getLogger(Matrix.class);
-
+    public static Matrix EMPTY_MATRIX = new Matrix(Collections.emptyList());
     private final String[][] matrix;
     private final Dimension dimension;
 

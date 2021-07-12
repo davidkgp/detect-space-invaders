@@ -11,10 +11,14 @@ import java.util.stream.Collectors;
 @Slf4j
 public class FileLoader {
 
-    private final String rootFolder = "src/main/resources/";
+    private final String rootFolder = System.getenv("INPUT_ROOT")!=null?System.getenv("INPUT_ROOT"):"src/main/resources/";
+
 
     public List<File> getFilesInDirectory(final String absolutePath) {
+        log.info(rootFolder);
         final File path = new File(rootFolder + absolutePath);
+
+        System.out.println(path.getPath());
 
         return Arrays.stream(Objects.requireNonNull(path.listFiles()))
                 .peek(file -> log.info("File found {}", file.getPath()))

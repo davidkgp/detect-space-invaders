@@ -29,7 +29,10 @@ public class Trigger {
 
         RadarOffice radarOffice = new RadarOfficeFacade(invaderDataStore, radarDataStore);
         SpaceInvaders spaceInvaders = new SpaceInvaders(radarOffice);
-        RadarResponse radarResponse = spaceInvaders.detect(50);
+
+        final int percentageFaultTolerance = System.getenv("FAULT_TOLERANCE_PERCENTAGE") != null ? Integer.parseInt(System.getenv("FAULT_TOLERANCE_PERCENTAGE")) : 0;
+
+        RadarResponse radarResponse = spaceInvaders.detect(percentageFaultTolerance);
         log.info("Searching result {}", radarResponse.toString());
     }
 }

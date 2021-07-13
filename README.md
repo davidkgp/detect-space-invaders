@@ -6,17 +6,11 @@ radar is done by using sliding window technique, where
 based on the invader dimension a sliding window is applied over
 the radar image and comparison is applied against the invader pattern.
 
+* The matching between invader and radar is done based on percentage fault tolerance.
+  So if the fault tolerance is set at 20(percentage) and the match of invader to the radar is
+  70 percentage, it will be still a mismatch, but if its at 90 percentage then its a match.
 
-## Local Run
-1. Init.sh
- * Run the init.sh
- * This will build the code and run the application with the `input` folder at root.
-   The `input` folder contains two folders `invader` and `radar` which would contain
-   files which represent invader pattern and radar image. It also sets the 
-   fault tolerance for invader matching(detection) in the radar image.
-   So if the fault tolerance is set at 20(percentage) and the match of invader to the radar is
-   70 percentage, it will be still a mismatch.
- * Invader pattern is also used to generate diff variations of the invader pattern based on 90 degree(or multiples)
+* Invader pattern is also used to generate diff variations of the invader pattern based on 90 degree(or multiples)
    rotation in clockwise or anticlockwise direction. So one invader image will result in following variations
     * 90 degree clockwise
     * 180 degree clockwise
@@ -25,7 +19,14 @@ the radar image and comparison is applied against the invader pattern.
     * 180 degree anti clockwise
     * 270 degree anti clockwise
 
- * The matching with radar is done based on the sliding window algorithm
+
+
+## Local Run
+1. Init.sh
+ * Run the init.sh
+ * This will build the code and run the application with the `input` folder at root.
+   The `input` folder contains two folders `invader` and `radar` which would contain
+   files which represent invader pattern and radar image.
    
  * Result of the matching is echoed out on logs
 2. Docker

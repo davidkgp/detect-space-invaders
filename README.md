@@ -24,4 +24,8 @@
 2. Docker
  * The docker-compose file will run the above application.
  * The input directory for radar and invader are part of ENV variables and volume mapping
+   * `FAULT_TOLERANCE_PERCENTAGE` is for setting fault tolerance for matching invader to radar image
+   *  `INPUT_ROOT` is the folder where the invader and radar images are.
+ * The docker run will quit in sometime, the match report will be available im the container logs 
+
 

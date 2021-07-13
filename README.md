@@ -28,4 +28,15 @@
    *  `INPUT_ROOT` is the folder where the invader and radar images are.
  * The docker run will quit in sometime, the match report will be available im the container logs 
 
+## Improvement
+1. Using a dependency injection framework. Currently I have not used any framework as most of the interfaces have
+   a single implementation.
+2. Re implement the sliding window on Radar matrix in a clean way.
+3. Re implement the matching of invader and radar to detect half invaders(cut down in middle).
+4. Treat the radar as a continuous stream instead of fixed image.
+5. Investigate if the time complexity of matrix operations can be reduced.
+6. Output the detection report as a file or event stream(only if radar is a continuous stream).
+7. Implement integration tests with stubbed data sources for invader and radar.
+8. Clean up the domain.
+
 

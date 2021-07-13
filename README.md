@@ -1,5 +1,12 @@
 # Detect space invaders
 
+## Logic
+The invader images and the radar image is loaded as a matrix in the system. The match between the invader pattern and the 
+radar is done by using sliding window technique, where 
+based on the invader dimension a sliding window is applied over
+the radar image and comparison is applied against the invader pattern.
+
+
 ## Local Run
 1. Init.sh
  * Run the init.sh
